@@ -6,8 +6,8 @@ This tool is designed to mimic Automated Resume Screening / Applicant Tracking S
 
 ---
 
-## 🚀 Live Demo
-🔗 **Try the App Live:** [ضع رابط تطبيق Streamlit الخاص بك هنا]
+*Run the application locally following the setup steps below.*
+
 
 ---
 
