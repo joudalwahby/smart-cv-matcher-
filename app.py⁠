@@ -1,0 +1,47 @@
+import streamlit as st
+from pypdf import PdfReader
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+st.set_page_config(page_title="Smart CV Matcher", page_icon="📄")
+
+st.title("📄 Smart CV & Job Matcher System")
+st.write("نظام ذكي يعتمد على معالجة اللغات الطبيعية (NLP) لمطابقة السيرة الذاتية مع المتطلبات الوظيفية.")
+
+def extract_text_from_pdf(pdf_file):
+    reader = PdfReader(pdf_file)
+    text = ""
+    for page in reader.pages:
+        extracted = page.extract_text()
+        if extracted:
+            text += extracted + " "
+    return text
+
+cv_file = st.file_uploader("ارفع السيرة الذاتية (PDF)", type=["pdf"])
+job_desc = st.text_area("أدخل الوصف الوظيفي (Job Description)", height=150)
+
+if st.button("تحليل ومطابقة"):
+    if cv_file is not None and job_desc.strip():
+        cv_text = extract_text_from_pdf(cv_file)
+        
+        if cv_text.strip():
+            documents = [cv_text, job_desc]
+            vectorizer = TfidfVectorizer(stop_words='english')
+            tfidf_matrix = vectorizer.fit_transform(documents)
+            
+            match_percentage = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0] * 100
+            score = round(match_percentage, 2)
+            
+            st.subheader(f"📊 نسبة المطابقة: {score}%")
+            st.progress(int(score))
+            
+            if score >= 75:
+                st.success("🟢 سيرة ذاتية ممتازة ومطابقة بشكل عالي جداً مع المتطلبات!")
+            elif score >= 45:
+                st.warning("🟡 مطابقة متوسطة. يفضل إضافة المزيد من الكلمات المفتاحية المذكورة في الإعلان.")
+            else:
+                st.error("🔴 مطابقة منخفضة. تفتقر السيرة الذاتية للعديد من المهارات المطلوبة.")
+        else:
+            st.error("تعذر قراءة النص من ملف PDF.")
+    else:
+        st.info("يرجى رفع ملف السيرة الذاتية وكتابة الوصف الوظيفي أولاً.")
