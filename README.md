@@ -1,4 +1,4 @@
-# 📄 Smart CV & Job Matcher System (NLP Driven)
+# Smart CV & Job Matcher System (NLP Driven)
 
 An end-to-end NLP application built to parse, process, and evaluate the degree of match between a candidate's Resume (PDF) and a specific Job Description (JD).
 
@@ -8,7 +8,7 @@ This tool is designed to mimic Automated Resume Screening / Applicant Tracking S
 
 ---
 
-## ✨ Features
+##  Features
 
 * **PDF Text Extraction:** Parses text directly from uploaded PDF resumes using `pypdf`.
 * **Keyword Matching & Vectorization:** Transforms unstructured text into numerical representations using **TF-IDF (Term Frequency-Inverse Document Frequency)** vectorization.
@@ -17,7 +17,7 @@ This tool is designed to mimic Automated Resume Screening / Applicant Tracking S
 
 ---
 
-## 🛠️ Tech Stack & Libraries
+## Tech Stack & Libraries
 
 * **Language:** Python 3.10+
 * **Framework:** Streamlit (UI & Web Deployment)
@@ -26,7 +26,7 @@ This tool is designed to mimic Automated Resume Screening / Applicant Tracking S
 
 ---
 
-## 💻 How It Works
+## How It Works
 
 1. **Extraction:** The user uploads a PDF resume and pastes a Job Description.
 2. **Preprocessing:** Text is extracted, cleaned, and stripped of common English stop words.
@@ -35,7 +35,7 @@ This tool is designed to mimic Automated Resume Screening / Applicant Tracking S
 
 ---
 
-## 🛠️ Local Installation & Setup
+##  Local Installation & Setup
 
 If you wish to run this project locally:
 
